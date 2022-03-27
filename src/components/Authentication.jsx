@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import imageIcon from "../assets/email_phone.png";
 import arrowIcon from "../assets/arrowSubmit.svg";
 import reloadIcon from "../assets/reload.svg";
-import { FaArrowAltCircleRight } from "react-icons/fa";
 import PhoneInput from 'react-phone-input-2';
+ import { ToastContainer, toast } from 'react-toastify';
+import axios from "axios";
 import './phoneInput.css';
 
 function Authentication() {
@@ -50,21 +51,38 @@ function Authentication() {
     }
 
     const onSubmit = (e) => {
+        console.log(value);
         e.preventDefault();
         setOtpVerify(true);
-        if(phoneActive){
-            console.log("Phone is active");
+        if (phoneActive) {
+            axios.post('https://newadminapi.herokuapp.com/api/sendOTP', {
+                "userId": "1",
+                "mobile": value
+            })
+                .then(response => console.log(response.data))
+                .catch(err => console.log(err))
+
         }
-        if(emailActive){
-            console.log("Email is active");
+        if (emailActive) {
+            axios.post('https://newadminapi.herokuapp.com/api/sendOTP', {
+                "userId": "1",
+                "email": email
+            })
+                .then(response => console.log(response.data))
+                .catch(err => console.log(err))
         }
     };
     const otpChange = (e) => {
         setOtpNumber(e.target.value);
     };
     const otpHandler = () => {
-        
-        console.log(otpNumber);
+
+        axios.post('https://newadminapi.herokuapp.com/api/verifyOtp', {
+            "session": "3232121",
+            "otp": otpNumber
+        })
+            .then(response => console.log(response.data))
+            .catch(err => console.log(err))
     };
     return (
         <div className="flex flex-col items-between 2xl:justify-evenly mb-12 mt-2 md:mt-5 lg:mt-6 xl:mt-8 md:flex-row">
@@ -172,26 +190,29 @@ function Authentication() {
                             </form>
                         </div>
                         {otpVerify ? (
-                            <div className="mt-0 flex flex-row items-center">
-                                <div className="w-80">
-                                    <input
-                                        type="number"
-                                        id="otp"
-                                        name="otp"
-                                        value={otpNumber}
-                                        onChange={otpChange}
-                                        className="rounded-full bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Enter your OTP number"
-                                    />
+                            <div className="mt-0 flex flex-col">
+                                <div className="flex flex-row items-center">
+                                    <div className="w-80">
+                                        <input
+                                            type="number"
+                                            id="otp"
+                                            name="otp"
+                                            value={otpNumber}
+                                            onChange={otpChange}
+                                            className="rounded-full bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="Enter your OTP number"
+                                        />
+                                    </div>
+                                    <div className="ml-5 w-14 md:w-10 overflow-hidden flex justify-center items-center">
+                                        <img
+                                            src={arrowIcon}
+                                            className="cursor-pointer"
+                                            alt=""
+                                            onClick={otpHandler}
+                                        />
+                                    </div>
                                 </div>
-                                <div className="ml-5 w-14 md:w-10 overflow-hidden flex justify-center items-center">
-                                    <img
-                                        src={arrowIcon}
-                                        className="cursor-pointer"
-                                        alt=""
-                                        onClick={otpHandler}
-                                    />
-                                </div>
+                                <p className="text-sm my-2 text-red-500">{otpNumber.length > 0 && otpNumber.length !== 6 ? "OTP must be 6 characters" : null}</p>
                             </div>
                         ) : null}
                     </div>
