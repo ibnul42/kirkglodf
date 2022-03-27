@@ -1,0 +1,65 @@
+.form-control{
+    height: 43px!important;
+    margin-left: 25px!important;
+    border-radius: 50px!important;
+    width: 92%!important;
+}
+
+.flag-dropdown{
+    background-color: #E5E7EB!important;
+    width: 70px!important;
+    border-radius: 50px!important;
+    display: flex!important;
+    justify-content: center!important;
+}
+@media only screen and (max-width: 425px){
+    .form-control{
+        margin-left: 5px!important;
+    }
+	.flag-dropdown{
+        width: 50px!important;
+    }
+    ::placeholder {
+        font-size: 12px!important;
+      }
+}
+
+/* .flag{
+    background-image: url("../assets/report.png")!important;
+} */
+
+.selected-flag:hover{
+    background-color: #E5E7EB!important;
+}
+
+.selected-flag.open{
+    background-color: #E5E7EB!important;
+    position: relative!important;
+}
+
+.country-list{
+    position: absolute!important;
+    left: 0!important;
+    width: auto!important;
+    top: -11px!important;
+}
+
+.selected-flag:active{
+    background-color: #E5E7EB!important;
+}
+.selected-flag:focus{
+    background-color: #E5E7EB!important;
+}
+.selected-flag:focus-within{
+    background-color: #E5E7EB!important;
+}
+.selected-flag:focus-visible{
+    background-color: #E5E7EB!important;
+}
+.selected-flag:target{
+    background-color: #E5E7EB!important;
+}
+
+.arrow{
+    display: none!important;
+}
