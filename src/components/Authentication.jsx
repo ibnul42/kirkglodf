@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import imageIcon from "../assets/email_phone.png";
 import arrowIcon from "../assets/arrowSubmit.svg";
 import reloadIcon from "../assets/reload.svg";
@@ -64,7 +64,7 @@ function Authentication() {
     const validateData = () => {
         if (phoneActive) {
             if (Number(value.toString().length) - Number(countryCode.toString().length) !== 10) {
-                toast.warn("Phone number should 10 digit only");
+                toast.warn("Phone number should be 10 digits only");
                 setOtpVerify(false);
             } else {
                 axios
@@ -119,7 +119,7 @@ function Authentication() {
     };
     return (
         <div className="flex flex-col items-between 2xl:justify-evenly mb-12 mt-2 md:mt-5 lg:mt-6 xl:mt-8 md:flex-row">
-            <div className="flex flex-col justify-between">
+            <div className="flex flex-col md:flex-1 justify-between">
                 <div className="">
                     <div className="text-2xl md:text-3xl xl:text-6xl font-bold ">
                         <p className="my-4 text-[#00152E]">
@@ -174,62 +174,66 @@ function Authentication() {
                     <div className="my-4 flex flex-col">
                         <div className="">
                             <form>
-                                <div className="my-4 flex flex-row items-center">
-                                    <div className="flex w-80">
+                                <div className="my-4 flex flex-col">
+                                    <div className="flex flex-row items-center">
                                         {phoneActive ? (
                                             <>
-                                                <PhoneInput
-                                                    className=""
-                                                    country="us"
-                                                    placeholder="Enter Phone Number"
-                                                    value={value}
-                                                    onChange={setValue}
-                                                    isValid={(value, country) => {
-                                                        setCountryCode(country.countryCode);
-                                                        if (value.match(/1234567890/)) {
-                                                            return 'Invalid value: ' + value + ', ' + country.name;
-                                                        } else {
-                                                            return true;
-                                                        }
-                                                    }}
-                                                    disabled={otpVerify ? true : false}
+                                                <div className="w-80">
+                                                    <PhoneInput
+                                                        className=""
+                                                        country="us"
+                                                        placeholder="Enter Phone Number"
+                                                        value={value}
+                                                        onChange={setValue}
+                                                        isValid={(value, country) => {
+                                                            setCountryCode(country.countryCode);
+                                                            if (value.match(/1234567890/)) {
+                                                                return 'Invalid value: ' + value + ', ' + country.name;
+                                                            } else {
+                                                                return true;
+                                                            }
+                                                        }}
+                                                        disabled={otpVerify ? true : false}
 
-                                                />
+                                                    />
+                                                </div>
                                             </>
                                         ) : (
                                             <>
-                                                <input
-                                                    type="email"
-                                                    id="email"
-                                                    name="email"
-                                                    value={email}
-                                                    onChange={onChange}
-                                                    className="rounded-full bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="Enter your Email Address"
-                                                    disabled={otpVerify ? true : false}
-                                                />
+                                                <div className="w-80">
+                                                    <input
+                                                        type="email"
+                                                        id="email"
+                                                        name="email"
+                                                        value={email}
+                                                        onChange={onChange}
+                                                        className="rounded-full bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        placeholder="Enter your Email Address"
+                                                        disabled={otpVerify ? true : false}
+                                                    />
+                                                </div>
                                             </>
                                         )}
+                                        {otpVerify ? (
+                                            <div className="ml-5 w-14 md:w-10 overflow-hidden flex justify-center items-center">
+                                                <img
+                                                    src={reloadIcon}
+                                                    onClick={reloadHandler}
+                                                    className="cursor-pointer"
+                                                    alt=""
+                                                />
+                                            </div>
+                                        ) : (
+                                            <div className="ml-5 w-14 md:w-10 overflow-hidden flex justify-center items-center">
+                                                <img
+                                                    src={arrowIcon}
+                                                    onClick={onSubmit}
+                                                    className="cursor-pointer"
+                                                    alt=""
+                                                />
+                                            </div>
+                                        )}
                                     </div>
-                                    {otpVerify ? (
-                                        <div className="ml-5 w-14 md:w-10 overflow-hidden flex justify-center items-center">
-                                            <img
-                                                src={reloadIcon}
-                                                onClick={reloadHandler}
-                                                className="cursor-pointer"
-                                                alt=""
-                                            />
-                                        </div>
-                                    ) : (
-                                        <div className="ml-5 w-14 md:w-10 overflow-hidden flex justify-center items-center">
-                                            <img
-                                                src={arrowIcon}
-                                                onClick={onSubmit}
-                                                className="cursor-pointer"
-                                                alt=""
-                                            />
-                                        </div>
-                                    )}
                                 </div>
                                 {emailActive ? (
                                     validEmail ? null : <p className="text-sm my-2 text-red-500">
@@ -278,7 +282,7 @@ function Authentication() {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col mt-10 md:mt-0 mb-5 md:mb-0 justify-between">
+            <div className="flex flex-col mt-10 md:mt-0 mb-5 md:mb-0 md:flex-1 justify-between">
                 <div className="">
                     <img src={imageIcon} className="w-auto md:w-10/12" alt="alter" />
                 </div>
