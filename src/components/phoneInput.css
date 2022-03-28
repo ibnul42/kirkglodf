@@ -12,6 +12,13 @@
     display: flex!important;
     justify-content: center!important;
 }
+
+@media only screen and (max-width: 320px){
+    .form-control{
+        width: 100%!important;
+    }
+}
+
 @media only screen and (max-width: 425px){
     .form-control{
         margin-left: 5px!important;
@@ -23,10 +30,6 @@
         font-size: 12px!important;
       }
 }
-
-/* .flag{
-    background-image: url("../assets/report.png")!important;
-} */
 
 .selected-flag:hover{
     background-color: #E5E7EB!important;
@@ -63,8 +66,3 @@
 .arrow{
     display: none!important;
 }
-/* .invalid-number{
-    border: none !important;
-    background-color: none !important;
-    border-left-color: none !important;
-} */
