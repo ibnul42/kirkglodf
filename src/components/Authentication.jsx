@@ -143,34 +143,32 @@ function Authentication() {
                             text a visual form of a docum commonly the visa
                         </p>
                     </div>
-                    {otpVerify ? null : (
-                        <div className="flex items-center justify-center md:justify-start my-2 md:my-3 xl:my-5">
-                            <div className="flex flex-col">
-                                <h4
-                                    className={`text-[#00152E] opacity-50 font-bold text-2xl ml-0 mr-1 cursor-pointer ${phoneActive ? "!text-[#0C77FF] !opacity-100" : ""
-                                        }`}
-                                    onClick={() => tabChange("phone")}
-                                >
-                                    Phone
-                                </h4>
-                                {phoneActive ? (
-                                    <div className="bg-[#0C77FF] w-6 h-0.5"></div>
-                                ) : null}
-                            </div>
-                            <div className="flex flex-col ml-5">
-                                <h4
-                                    className={`text-[#00152e] opacity-50 font-bold text-2xl ml-0 mr-1 cursor-pointer ${emailActive ? "!text-[#0C77FF] !opacity-100" : ""
-                                        }`}
-                                    onClick={() => tabChange("email")}
-                                >
-                                    Email
-                                </h4>
-                                {emailActive ? (
-                                    <div className="bg-[#0C77FF] w-6 h-0.5"></div>
-                                ) : null}
-                            </div>
+                    <div className="flex items-center justify-center md:justify-start my-2 md:my-3 xl:my-5">
+                        <div className="flex flex-col">
+                            <h4
+                                className={`text-[#00152E] opacity-50 font-bold text-2xl ml-0 mr-1 cursor-pointer ${phoneActive ? "!text-[#0C77FF] !opacity-100" : ""
+                                    }`}
+                                onClick={() => tabChange("phone")}
+                            >
+                                Phone
+                            </h4>
+                            {phoneActive ? (
+                                <div className="bg-[#0C77FF] w-6 h-0.5"></div>
+                            ) : null}
                         </div>
-                    )}
+                        <div className="flex flex-col ml-5">
+                            <h4
+                                className={`text-[#00152e] opacity-50 font-bold text-2xl ml-0 mr-1 cursor-pointer ${emailActive ? "!text-[#0C77FF] !opacity-100" : ""
+                                    }`}
+                                onClick={() => tabChange("email")}
+                            >
+                                Email
+                            </h4>
+                            {emailActive ? (
+                                <div className="bg-[#0C77FF] w-6 h-0.5"></div>
+                            ) : null}
+                        </div>
+                    </div>
                     <div className="my-4 flex flex-col">
                         <div className="">
                             <form>
@@ -181,6 +179,8 @@ function Authentication() {
                                                 <div className="w-80">
                                                     <PhoneInput
                                                         className=""
+                                                        id="phone"
+                                                        name="phone"
                                                         country="us"
                                                         placeholder="Enter Phone Number"
                                                         value={value}

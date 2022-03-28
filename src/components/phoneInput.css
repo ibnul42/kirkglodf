@@ -6,7 +6,7 @@
 }
 
 .flag-dropdown{
-    background-color: #E5E7EB!important;
+    background-color: #F2F8FF!important;
     width: 70px!important;
     border-radius: 50px!important;
     display: flex!important;
@@ -31,12 +31,16 @@
       }
 }
 
+/* .flag{
+    background-image: url("../assets/report.png")!important;
+} */
+
 .selected-flag:hover{
-    background-color: #E5E7EB!important;
+    background-color: #F2F8FF!important;
 }
 
 .selected-flag.open{
-    background-color: #E5E7EB!important;
+    background-color: #F2F8FF!important;
     position: relative!important;
 }
 
@@ -48,19 +52,24 @@
 }
 
 .selected-flag:active{
-    background-color: #E5E7EB!important;
+    background-color: #F2F8FF!important;
+    border-radius: 50px!important;
 }
 .selected-flag:focus{
-    background-color: #E5E7EB!important;
+    background-color: #F2F8FF!important;
+    border-radius: 50px!important;
 }
 .selected-flag:focus-within{
-    background-color: #E5E7EB!important;
+    background-color: #F2F8FF!important;
+    border-radius: 50px!important;
 }
 .selected-flag:focus-visible{
-    background-color: #E5E7EB!important;
+    background-color: #F2F8FF!important;
+    border-radius: 50px!important;
 }
 .selected-flag:target{
-    background-color: #E5E7EB!important;
+    background-color: #F2F8FF!important;
+    border-radius: 50px!important;
 }
 
 .arrow{
